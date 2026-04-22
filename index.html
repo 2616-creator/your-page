@@ -1,15 +1,74 @@
-<DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나의 페이지이</title>
-</head>
-    
-<body>
-    <p> 안녕하세요 </p>
-    <h1> 저의 첫번째 화면구현입니다. </h1>
+  <title>클릭 게임</title>
 
-    <button onclick="alert('클릭됨')"> 버튼</button>
+  <style>
+    body {
+      text-align: center;
+      background-color: lightblue;
+    }
+
+    h1 {
+      margin-top: 40px;
+    }
+
+    button {
+      padding: 20px;
+      font-size: 20px;
+      margin-top: 20px;
+    }
+
+    #score {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+
+    #time {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>클릭 게임 🎮</h1>
+
+  <button onclick="clickGame()">클릭!</button>
+
+  <div id="score">점수: 0</div>
+  <div id="time">남은 시간: 10</div>
+
+  <script>
+    let score = 0;
+    let time = 10;
+    let gameStarted = false;
+
+    function clickGame() {
+      if (!gameStarted) {
+        gameStarted = true;
+        startTimer();
+      }
+
+      if (time > 0) {
+        score++;
+        document.getElementById("score").innerText = "점수: " + score;
+      }
+    }
+
+    function startTimer() {
+      let timer = setInterval(() => {
+        time--;
+        document.getElementById("time").innerText = "남은 시간: " + time;
+
+        if (time <= 0) {
+          clearInterval(timer);
+          alert("게임 끝! 점수: " + score);
+        }
+      }, 1000);
+    }
+  </script>
+
 </body>
 </html>
